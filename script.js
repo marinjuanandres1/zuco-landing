@@ -6,6 +6,12 @@ const totalSlides = 8; // Total number of images
 document.addEventListener('DOMContentLoaded', function() {
     updateCarousel();
     
+    // Initialize custom cursor
+    initCustomCursor();
+    
+    // Initialize scroll animations
+    initScrollAnimations();
+    
     // Auto-play carousel every 5 seconds
     setInterval(() => {
         nextSlide();
@@ -42,11 +48,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function changeSlide(direction) {
+    // Remove active class from current slide
+    const slides = document.querySelectorAll('.carousel-slide');
+    slides[currentSlideIndex].classList.remove('active');
+    
     if (direction === 1) {
         nextSlide();
     } else {
         prevSlide();
     }
+    
+    // Add active class to new slide
+    slides[currentSlideIndex].classList.add('active');
 }
 
 function nextSlide() {
@@ -345,8 +358,63 @@ function lazyLoadImages() {
             }
         });
     });
-    
+
     images.forEach(img => imageObserver.observe(img));
+}
+
+// Custom Cursor
+function initCustomCursor() {
+    const cursor = document.querySelector('.custom-cursor');
+    
+    if (cursor) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        // Scale cursor on hover over interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .carousel-slide');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+    }
+}
+
+// Scroll Animations
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    // Add animation classes to sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+        if (index > 0) { // Skip hero section
+            section.classList.add('fade-in');
+            observer.observe(section);
+        }
+    });
+    
+    // Add slide-up animation to specific elements
+    const slideUpElements = document.querySelectorAll('.contact-card, .social-link, .pdf-preview');
+    slideUpElements.forEach(el => {
+        el.classList.add('slide-up');
+        observer.observe(el);
+    });
 }
 
 // Initialize lazy loading

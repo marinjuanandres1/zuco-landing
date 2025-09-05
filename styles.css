@@ -62,6 +62,43 @@ body {
     color: #333;
     background-color: #000;
     overflow-x: hidden;
+    cursor: none;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ff4d4d, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+}
+
+/* Smooth scroll animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .container {
@@ -104,7 +141,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,6 +148,26 @@ body {
     text-align: center;
     color: white;
     z-index: 2;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .video-controls {
@@ -136,12 +192,12 @@ body {
 }
 
 .fullscreen-btn {
-    background: linear-gradient(135deg, #ff4444, #ff6666);
+    background: linear-gradient(135deg, #ff4d4d, #ff6666);
     border: none;
     color: white;
     font-size: 1rem;
     padding: 15px 30px;
-    border-radius: 30px;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -303,30 +359,56 @@ body {
 
 /* About Section */
 .about {
-    padding: 40px 0;
+    padding: 80px 10%;
     background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
     color: white;
 }
 
-.about h2 {
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-text h2 {
     font-family: 'ACEH', sans-serif;
     font-size: 1.8rem;
     font-weight: bold;
-    margin-bottom: 1rem;
-    text-align: center;
+    margin-bottom: 1.5rem;
     color: #fff;
     letter-spacing: 1px;
 }
 
-.about p {
+.about-text p {
     font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-    text-align: center;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 1rem;
     opacity: 0.9;
-    line-height: 1.4;
+    line-height: 1.6;
+}
+
+.about-text strong {
+    color: #ff4d4d;
+    font-weight: 600;
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-photo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.artist-photo:hover {
+    transform: scale(1.05);
 }
 
 /* Gallery Section */
@@ -366,6 +448,12 @@ body {
 .carousel-slide {
     min-width: 100%;
     height: 300px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
 }
 
 .carousel-slide img {
@@ -373,6 +461,11 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
+}
+
+.carousel-slide:hover img {
+    transform: scale(1.02);
 }
 
 .carousel-controls {
@@ -458,16 +551,54 @@ body {
     border: 1px solid rgba(255,255,255,0.2);
     box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.pdf-3d-mockup {
+    flex-shrink: 0;
+}
+
+.pdf-document {
+    position: relative;
+    width: 120px;
+    height: 160px;
+    transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+    transform-style: preserve-3d;
+}
+
+.pdf-thumbnail {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.pdf-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pdf-shadow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    z-index: 1;
 }
 
 .pdf-preview-content {
-    margin-bottom: 25px;
-}
-
-.pdf-icon {
-    font-size: 4rem;
-    color: #ff4444;
-    margin-bottom: 20px;
+    flex: 1;
+    text-align: left;
 }
 
 .pdf-preview h3 {
@@ -509,8 +640,8 @@ body {
 }
 
 .preview-btn {
-    background: rgba(255,255,255,0.2);
-    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.8);
     color: white;
     padding: 12px 25px;
     border-radius: 25px;
@@ -525,9 +656,10 @@ body {
 }
 
 .preview-btn:hover {
-    background: rgba(255,255,255,0.3);
+    background: white;
+    color: black;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.3);
 }
 
 /* PDF Modal */
@@ -583,7 +715,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(45deg, #ff4444, #ff6666);
+    background: linear-gradient(45deg, #ff4d4d, #ff6666);
     color: white;
     text-decoration: none;
     padding: 15px 30px;
@@ -591,11 +723,35 @@ body {
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(255,68,68,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.download-btn:hover::before {
+    left: 100%;
 }
 
 .download-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255,68,68,0.4);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255,68,68,0.5);
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: translateY(-2px) scale(1.05); }
+    50% { transform: translateY(-2px) scale(1.1); }
+    100% { transform: translateY(-2px) scale(1.05); }
 }
 
 /* Social Media Section */
@@ -616,43 +772,59 @@ body {
 }
 
 .social-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     max-width: 600px;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .social-link {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 15px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 12px;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     text-decoration: none;
     color: white;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.social-link:hover {
-    transform: translateY(-5px);
-    background: rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 .social-link i {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    z-index: 2;
+    position: relative;
 }
 
-.social-link span {
-    font-weight: 500;
-    font-size: 0.95rem;
+.social-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.social-link.instagram:hover {
-    background: linear-gradient(45deg, #E4405F, #C13584);
+/* Brand-specific colors */
+.social-link.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-link.tiktok {
+    background: linear-gradient(45deg, #000000, #ff0050, #00f2ea);
+}
+
+.social-link.spotify {
+    background: #1db954;
+}
+
+.social-link.apple {
+    background: #000000;
+}
+
+.social-link.youtube {
+    background: #ff0000;
 }
 
 .social-link.spotify:hover {
@@ -688,29 +860,109 @@ body {
     letter-spacing: 1px;
 }
 
-.contact-info {
+.contact-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 800px;
+    gap: 30px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.contact-item {
+.contact-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
-    padding: 20px;
+    text-align: center;
+    padding: 30px 20px;
     background: rgba(255,255,255,0.1);
-    border-radius: 15px;
+    border-radius: 20px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.2);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.contact-item:hover {
+.contact-card:hover {
     background: rgba(255,255,255,0.15);
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.contact-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-card.management .contact-icon {
+    background: linear-gradient(45deg, #666, #999);
+    color: white;
+}
+
+.contact-card.whatsapp .contact-icon {
+    background: #25d366;
+    color: white;
+}
+
+.contact-card.email .contact-icon {
+    background: #ff4d4d;
+    color: white;
+}
+
+.contact-card h3 {
+    font-family: 'ACEH', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.contact-card p,
+.contact-card a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: #ff4d4d;
+}
+
+/* Spotify Player Section */
+.spotify-player {
+    padding: 60px 0;
+    background: #000;
+    color: white;
+}
+
+.spotify-player h2 {
+    font-family: 'ACEH', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.spotify-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.spotify-container iframe {
+    border-radius: 20px;
 }
 
 .contact-item i {
@@ -746,9 +998,21 @@ body {
 /* Footer */
 .footer {
     padding: 25px 0;
-    background: #111;
+    background: linear-gradient(135deg, #111, #222);
     color: #666;
     text-align: center;
+    border-top: 2px solid #ff4d4d;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff4d4d, transparent);
 }
 
 .footer-content {
@@ -1004,5 +1268,65 @@ html {
     
     .download-btn:hover {
         transform: none;
+    }
+}
+
+/* Additional Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .about-text {
+        order: 2;
+    }
+    
+    .about-image {
+        order: 1;
+    }
+    
+    .contact-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-card {
+        padding: 25px 15px;
+    }
+    
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .social-links {
+        gap: 15px;
+    }
+    
+    .social-link {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .social-link i {
+        font-size: 1.2rem;
+    }
+    
+    .pdf-preview {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .pdf-document {
+        width: 100px;
+        height: 130px;
+    }
+    
+    .spotify-container {
+        margin: 0 10px;
     }
 }

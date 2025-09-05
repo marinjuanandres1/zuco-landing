@@ -10,39 +10,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="custom-cursor"></div>
     <!-- Hero Section with Video -->
-    <section class="hero">
-        <div class="video-container">
-            <video autoplay muted loop playsinline preload="auto">
-                <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/quicktime">
-                <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="video-overlay">
-                <div class="logo-container">
-                    <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/Logo+ZUCO+Blanco.png" 
-                         alt="ZUCO OMG Logo" 
-                         class="artist-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <h1 class="artist-name" style="display: none;">ZUCO OMG</h1>
+            <section class="hero">
+            <div class="video-container">
+                <video autoplay muted loop playsinline preload="auto">
+                    <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/quicktime">
+                    <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay">
+                    <div class="gradient-overlay"></div>
+                    <div class="hero-content">
+                        <div class="logo-container">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/Logo+ZUCO+Blanco.png" 
+                                 alt="ZUCO OMG Logo" 
+                                 class="artist-logo"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <h1 class="artist-name" style="display: none;">ZUCO OMG</h1>
+                        </div>
+                        <p class="artist-tagline">El más feliz de los tristes</p>
+                        <div class="video-controls">
+                            <button class="play-btn" onclick="playVideo()">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="fullscreen-btn" onclick="openFullscreen()">
+                                <i class="fas fa-expand"></i>
+                                <span>Ver Video Completo</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <p class="artist-tagline">El más feliz de los tristes</p>
-                <div class="video-controls">
-                    <button class="play-btn" onclick="playVideo()">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button class="fullscreen-btn" onclick="openFullscreen()">
-                        <i class="fas fa-expand"></i>
-                        <span>Ver Video Completo</span>
-                    </button>
+                <div class="video-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando video...</p>
                 </div>
             </div>
-            <div class="video-loading">
-                <div class="loading-spinner"></div>
-                <p>Cargando video...</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Fullscreen Video Modal -->
     <div id="videoModal" class="video-modal">
@@ -59,9 +63,16 @@
     <!-- About Section -->
     <section class="about">
         <div class="container">
-            <h2>Sobre ZUCO OMG</h2>
-            <p>Zuco OMG es un cantante y compositor bogotano con más de 3 años de trayectoria. Su voz única y su narrativa romántica influenciadas por el R&B, proponen para sus oyentes un espacio en donde las personas pueden reflejar su sensibilidad, sin dejar a un lado el romanticismo y lo sensual del amor.</p>
-            <p>Lo que realmente distingue a ZUCO OMG es su extraordinario show en vivo. La riqueza musical y su capacidad para crear una conexión íntima con el público a través de su entrega impecable.</p>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre ZUCO OMG</h2>
+                    <p>Zuco OMG es un cantante y compositor bogotano con más de 3 años de trayectoria. Su <strong>voz única</strong> y su narrativa romántica influenciadas por el R&B, proponen para sus oyentes un espacio en donde las personas pueden reflejar su sensibilidad, sin dejar a un lado el romanticismo y lo <strong>sensual del amor</strong>.</p>
+                    <p>Lo que realmente distingue a ZUCO OMG es su <strong>extraordinario show en vivo</strong>. La riqueza musical y su capacidad para crear una conexión íntima con el público a través de su entrega impecable.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco1.png" alt="ZUCO OMG" class="artist-photo">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -72,7 +83,7 @@
             <div class="carousel-container">
                 <div class="carousel">
                     <div class="carousel-track">
-                        <div class="carousel-slide">
+                        <div class="carousel-slide active">
                             <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco1.png" alt="ZUCO OMG Photo 1">
                         </div>
                         <div class="carousel-slide">
@@ -126,10 +137,15 @@
             <h2>Press Kit</h2>
             <div class="onesheet-container">
                 <div class="pdf-preview">
-                    <div class="pdf-preview-content">
-                        <div class="pdf-icon">
-                            <i class="fas fa-file-pdf"></i>
+                    <div class="pdf-3d-mockup">
+                        <div class="pdf-document">
+                            <div class="pdf-thumbnail">
+                                <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco1.png" alt="Press Kit Preview">
+                            </div>
+                            <div class="pdf-shadow"></div>
                         </div>
+                    </div>
+                    <div class="pdf-preview-content">
                         <h3>ZUCO OMG - Press Kit</h3>
                         <p>Descarga el press kit completo con información del artista, biografía, fotos y datos de contacto.</p>
                         <div class="pdf-info">
@@ -174,23 +190,18 @@
             <div class="social-links">
                 <a href="https://www.instagram.com/zuco_omg" target="_blank" class="social-link instagram">
                     <i class="fab fa-instagram"></i>
-                    <span>Instagram</span>
                 </a>
                 <a href="https://www.tiktok.com/@zuco_omg" target="_blank" class="social-link tiktok">
                     <i class="fab fa-tiktok"></i>
-                    <span>TikTok</span>
                 </a>
                 <a href="https://open.spotify.com/artist/6hA5ALJWFb44ixgQMMvng7?si=HkcQBLttTWSbnJRaMmr8sQ" target="_blank" class="social-link spotify">
                     <i class="fab fa-spotify"></i>
-                    <span>Spotify</span>
                 </a>
                 <a href="https://music.apple.com/co/artist/zuco-omg/1507017768" target="_blank" class="social-link apple">
                     <i class="fab fa-apple"></i>
-                    <span>Apple Music</span>
                 </a>
                 <a href="https://www.youtube.com/@zucoomg4796" target="_blank" class="social-link youtube">
                     <i class="fab fa-youtube"></i>
-                    <span>YouTube</span>
                 </a>
             </div>
         </div>
@@ -200,28 +211,45 @@
     <section class="contact">
         <div class="container">
             <h2>Contacto</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-user-tie"></i>
-                    <div class="contact-details">
-                        <h3>Management</h3>
-                        <p>Juan Andrés Marín</p>
+            <div class="contact-cards">
+                <div class="contact-card management">
+                    <div class="contact-icon">
+                        <i class="fas fa-user-tie"></i>
                     </div>
+                    <h3>Management</h3>
+                    <p>Juan Andrés Marín</p>
                 </div>
-                <div class="contact-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <div class="contact-details">
-                        <h3>WhatsApp</h3>
-                        <a href="https://wa.me/573186788939" target="_blank">+57 318 678 8939</a>
+                <div class="contact-card whatsapp">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
                     </div>
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/573186788939" target="_blank">+57 318 678 8939</a>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <a href="mailto:juan@siente.live">juan@siente.live</a>
+                <div class="contact-card email">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
+                    <h3>Email</h3>
+                    <a href="mailto:juan@siente.live">juan@siente.live</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spotify Player Section -->
+    <section class="spotify-player">
+        <div class="container">
+            <h2>Escucha mi música</h2>
+            <div class="spotify-container">
+                <iframe src="https://open.spotify.com/embed/artist/6hA5ALJWFb44ixgQMMvng7?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="352" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                </iframe>
             </div>
         </div>
     </section>
