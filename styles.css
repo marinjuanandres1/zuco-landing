@@ -939,7 +939,7 @@ body {
 /* Spotify Player Section */
 .spotify-player {
     padding: 60px 0;
-    background: #000;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
     color: white;
 }
 
