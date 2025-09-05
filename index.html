@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZUCO OMG - Landing Page</title>
+    <link rel="icon" type="image/png" href="https://zucoomg-assets.s3.us-east-2.amazonaws.com/Logo+ZUCO+Negro.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Hero Section with Video -->
+    <section class="hero">
+        <div class="video-container">
+            <video autoplay muted loop playsinline preload="auto">
+                <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/quicktime">
+                <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay">
+                <div class="logo-container">
+                    <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/Logo+ZUCO+Blanco.png" 
+                         alt="ZUCO OMG Logo" 
+                         class="artist-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h1 class="artist-name" style="display: none;">ZUCO OMG</h1>
+                </div>
+                <p class="artist-tagline">El más feliz de los tristes</p>
+                <div class="video-controls">
+                    <button class="play-btn" onclick="playVideo()">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="fullscreen-btn" onclick="openFullscreen()">
+                        <i class="fas fa-expand"></i>
+                        <span>Ver Video Completo</span>
+                    </button>
+                </div>
+            </div>
+            <div class="video-loading">
+                <div class="loading-spinner"></div>
+                <p>Cargando video...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fullscreen Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="close-video" onclick="closeFullscreen()">&times;</span>
+            <video id="fullscreenVideo" controls autoplay>
+                <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/quicktime">
+                <source src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco+envivo+recap.mov" type="video/mp4">
+                Tu navegador no soporta el elemento video.
+            </video>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>Sobre ZUCO OMG</h2>
+            <p>Zuco OMG es un cantante y compositor bogotano con más de 3 años de trayectoria. Su voz única y su narrativa romántica influenciadas por el R&B, proponen para sus oyentes un espacio en donde las personas pueden reflejar su sensibilidad, sin dejar a un lado el romanticismo y lo sensual del amor.</p>
+            <p>Lo que realmente distingue a ZUCO OMG es su extraordinario show en vivo. La riqueza musical y su capacidad para crear una conexión íntima con el público a través de su entrega impecable.</p>
+        </div>
+    </section>
+
+    <!-- Image Carousel -->
+    <section class="gallery">
+        <div class="container">
+            <h2>Galería</h2>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco1.png" alt="ZUCO OMG Photo 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco2.png" alt="ZUCO OMG Photo 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco3.png" alt="ZUCO OMG Photo 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot3.jpg" alt="Charlot Photo 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot1.jpg" alt="Charlot Photo 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin3.jpg" alt="Campin Photo 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin2.jpg" alt="Campin Photo 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin1.jpg" alt="Campin Photo 1">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                    <span class="dot" onclick="currentSlide(7)"></span>
+                    <span class="dot" onclick="currentSlide(8)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Onesheet Section -->
+    <section class="onesheet">
+        <div class="container">
+            <h2>Press Kit</h2>
+            <div class="onesheet-container">
+                <div class="pdf-preview">
+                    <div class="pdf-preview-content">
+                        <div class="pdf-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>ZUCO OMG - Press Kit</h3>
+                        <p>Descarga el press kit completo con información del artista, biografía, fotos y datos de contacto.</p>
+                        <div class="pdf-info">
+                            <span class="pdf-size">PDF • 2.4 MB</span>
+                            <span class="pdf-pages">4 páginas</span>
+                        </div>
+                    </div>
+                    <div class="pdf-controls">
+                        <a href="https://zucoomg-assets.s3.us-east-2.amazonaws.com/ZUCO+OMG+-+Onesheet+actualizado+.pdf" 
+                           target="_blank" 
+                           class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Descargar PDF
+                        </a>
+                        <button class="preview-btn" onclick="openPdfPreview()">
+                            <i class="fas fa-eye"></i>
+                            Vista Previa
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Preview Modal -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <span class="close-pdf" onclick="closePdfPreview()">&times;</span>
+            <iframe id="pdfIframe" src="" width="100%" height="100%">
+                <p>Tu navegador no soporta PDFs. 
+                   <a href="https://zucoomg-assets.s3.us-east-2.amazonaws.com/ZUCO+OMG+-+Onesheet+actualizado+.pdf" 
+                      target="_blank">Descargar PDF aquí</a>
+                </p>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Social Media Section -->
+    <section class="social">
+        <div class="container">
+            <h2>Sígueme en redes sociales</h2>
+            <div class="social-links">
+                <a href="https://www.instagram.com/zuco_omg" target="_blank" class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.tiktok.com/@zuco_omg" target="_blank" class="social-link tiktok">
+                    <i class="fab fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+                <a href="https://open.spotify.com/artist/6hA5ALJWFb44ixgQMMvng7?si=HkcQBLttTWSbnJRaMmr8sQ" target="_blank" class="social-link spotify">
+                    <i class="fab fa-spotify"></i>
+                    <span>Spotify</span>
+                </a>
+                <a href="https://music.apple.com/co/artist/zuco-omg/1507017768" target="_blank" class="social-link apple">
+                    <i class="fab fa-apple"></i>
+                    <span>Apple Music</span>
+                </a>
+                <a href="https://www.youtube.com/@zucoomg4796" target="_blank" class="social-link youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2>Contacto</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-user-tie"></i>
+                    <div class="contact-details">
+                        <h3>Management</h3>
+                        <p>Juan Andrés Marín</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="contact-details">
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/573186788939" target="_blank">+57 318 678 8939</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <a href="mailto:juan@siente.live">juan@siente.live</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/Logo+ZUCO+Blanco.png" 
+                     alt="ZUCO OMG Logo" 
+                     class="footer-logo">
+                <p>&copy; 2025 ZUCO OMG. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
