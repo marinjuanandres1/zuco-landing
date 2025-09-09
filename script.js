@@ -1,13 +1,11 @@
 // Carousel functionality
 let currentSlideIndex = 0;
-const totalSlides = 8; // Total number of images
+const totalSlides = 9; // Total number of images
 
 // Initialize carousel
 document.addEventListener('DOMContentLoaded', function() {
     updateCarousel();
     
-    // Initialize custom cursor
-    initCustomCursor();
     
     // Initialize scroll animations
     initScrollAnimations();
@@ -48,18 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function changeSlide(direction) {
-    // Remove active class from current slide
-    const slides = document.querySelectorAll('.carousel-slide');
-    slides[currentSlideIndex].classList.remove('active');
-    
     if (direction === 1) {
         nextSlide();
     } else {
         prevSlide();
     }
-    
-    // Add active class to new slide
-    slides[currentSlideIndex].classList.add('active');
 }
 
 function nextSlide() {
@@ -80,9 +71,15 @@ function currentSlide(slideNumber) {
 function updateCarousel() {
     const track = document.querySelector('.carousel-track');
     const dots = document.querySelectorAll('.dot');
+    const slides = document.querySelectorAll('.carousel-slide');
     
     // Move the track
     track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+    
+    // Update slides active class
+    slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlideIndex);
+    });
     
     // Update dots
     dots.forEach((dot, index) => {
@@ -107,13 +104,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Video autoplay handling for mobile
 document.addEventListener('DOMContentLoaded', function() {
     const video = document.querySelector('video');
-    const loadingElement = document.querySelector('.video-loading');
     const playBtn = document.querySelector('.play-btn');
     
-    // Hide loading when video is ready
+    // Play video when ready
     video.addEventListener('loadeddata', function() {
         console.log('Video loaded, attempting to play');
-        loadingElement.classList.add('hidden');
         video.play().catch(e => {
             console.log('Autoplay prevented:', e);
             playBtn.style.display = 'block';
@@ -122,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     video.addEventListener('canplay', function() {
         console.log('Video can play, attempting to play');
-        loadingElement.classList.add('hidden');
         video.play().catch(e => {
             console.log('Video play failed:', e);
             playBtn.style.display = 'block';
@@ -132,12 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
     video.addEventListener('playing', function() {
         console.log('Video is playing');
         playBtn.style.display = 'none';
-        loadingElement.classList.add('hidden');
     });
     
     video.addEventListener('error', function(e) {
         console.log('Video error:', e);
-        loadingElement.classList.add('hidden');
         playBtn.style.display = 'block';
         // Add fallback background image if video fails
         const videoContainer = document.querySelector('.video-container');
@@ -243,8 +235,16 @@ function openPdfPreview() {
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
     
-    // Load the PDF in the iframe
-    iframe.src = 'https://zucoomg-assets.s3.us-east-2.amazonaws.com/ZUCO+OMG+-+Onesheet+actualizado+.pdf#toolbar=1&navpanes=1&scrollbar=1&zoom=FitH';
+    // Check if device is mobile
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Mobile-optimized PDF parameters
+        iframe.src = 'https://zucoomg-assets.s3.us-east-2.amazonaws.com/ZUCO+OMG+-+Onesheet+actualizado+.pdf#toolbar=1&navpanes=0&scrollbar=1&zoom=FitH&view=FitH';
+    } else {
+        // Desktop PDF parameters
+        iframe.src = 'https://zucoomg-assets.s3.us-east-2.amazonaws.com/ZUCO+OMG+-+Onesheet+actualizado+.pdf#toolbar=1&navpanes=1&scrollbar=1&zoom=FitH';
+    }
 }
 
 function closePdfPreview() {
@@ -301,14 +301,15 @@ document.addEventListener('DOMContentLoaded', function() {
 // Preload images for better performance
 function preloadImages() {
     const imageUrls = [
+        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin1.jpg',
+        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot3.jpg',
+        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/portada_balas_de_fogueo.jpg',
         'https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco1.png',
         'https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco2.png',
-        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco3.png',
-        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot3.jpg',
         'https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot1.jpg',
-        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin3.jpg',
         'https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin2.jpg',
-        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin1.jpg'
+        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco3.png',
+        'https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin3.jpg'
     ];
     
     imageUrls.forEach(url => {
@@ -362,28 +363,6 @@ function lazyLoadImages() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// Custom Cursor
-function initCustomCursor() {
-    const cursor = document.querySelector('.custom-cursor');
-    
-    if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        
-        // Scale cursor on hover over interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .carousel-slide');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-            });
-        });
-    }
-}
 
 // Scroll Animations
 function initScrollAnimations() {

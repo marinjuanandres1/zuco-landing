@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="custom-cursor"></div>
     <!-- Hero Section with Video -->
             <section class="hero">
             <div class="video-container">
@@ -40,10 +39,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="video-loading">
-                    <div class="loading-spinner"></div>
-                    <p>Cargando video...</p>
                 </div>
             </div>
         </section>
@@ -76,6 +71,23 @@
         </div>
     </section>
 
+    <!-- Spotify Player Section -->
+    <section class="spotify-player">
+        <div class="container">
+            <h2>Escucha mi música</h2>
+            <div class="spotify-container">
+                <iframe src="https://open.spotify.com/embed/artist/6hA5ALJWFb44ixgQMMvng7?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="352" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Image Carousel -->
     <section class="gallery">
         <div class="container">
@@ -84,28 +96,31 @@
                 <div class="carousel">
                     <div class="carousel-track">
                         <div class="carousel-slide active">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin1.jpg" alt="Campin Photo 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot3.jpg" alt="Charlot Photo 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/portada_balas_de_fogueo.jpg" alt="Portada Balas de Fogueo">
+                        </div>
+                        <div class="carousel-slide">
                             <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco1.png" alt="ZUCO OMG Photo 1">
                         </div>
                         <div class="carousel-slide">
                             <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco2.png" alt="ZUCO OMG Photo 2">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco3.png" alt="ZUCO OMG Photo 3">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot3.jpg" alt="Charlot Photo 3">
-                        </div>
-                        <div class="carousel-slide">
                             <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/charlot1.jpg" alt="Charlot Photo 1">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin3.jpg" alt="Campin Photo 3">
                         </div>
                         <div class="carousel-slide">
                             <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin2.jpg" alt="Campin Photo 2">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin1.jpg" alt="Campin Photo 1">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/zuco3.png" alt="ZUCO OMG Photo 3">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://zucoomg-assets.s3.us-east-2.amazonaws.com/campin3.jpg" alt="Campin Photo 3">
                         </div>
                     </div>
                 </div>
@@ -126,6 +141,7 @@
                     <span class="dot" onclick="currentSlide(6)"></span>
                     <span class="dot" onclick="currentSlide(7)"></span>
                     <span class="dot" onclick="currentSlide(8)"></span>
+                    <span class="dot" onclick="currentSlide(9)"></span>
                 </div>
             </div>
         </div>
@@ -166,23 +182,6 @@
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Spotify Player Section -->
-    <section class="spotify-player">
-        <div class="container">
-            <h2>Escucha mi música</h2>
-            <div class="spotify-container">
-                <iframe src="https://open.spotify.com/embed/artist/6hA5ALJWFb44ixgQMMvng7?utm_source=generator&theme=0" 
-                        width="100%" 
-                        height="352" 
-                        frameBorder="0" 
-                        allowfullscreen="" 
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                        loading="lazy">
-                </iframe>
             </div>
         </div>
     </section>

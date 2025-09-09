@@ -62,21 +62,8 @@ body {
     color: #333;
     background-color: #000;
     overflow-x: hidden;
-    cursor: none;
 }
 
-/* Custom Cursor */
-.custom-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, #ff4d4d, transparent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    mix-blend-mode: difference;
-}
 
 /* Smooth scroll animations */
 .fade-in {
@@ -290,37 +277,6 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.video-loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.video-loading.hidden {
-    display: none;
-}
-
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(255,255,255,0.3);
-    border-top: 3px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
 .logo-container {
     margin-bottom: 1rem;
@@ -677,9 +633,9 @@ body {
 
 .pdf-modal-content {
     position: relative;
-    margin: 2% auto;
-    width: 95%;
-    height: 95%;
+    margin: 1% auto;
+    width: 98%;
+    height: 98%;
     max-width: 1000px;
     display: flex;
     flex-direction: column;
@@ -1067,15 +1023,24 @@ body {
     }
     
     .pdf-modal-content {
-        width: 98%;
-        height: 98%;
-        margin: 1% auto;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
     
     .close-pdf {
         top: 10px;
         right: 15px;
         font-size: 30px;
+        z-index: 1002;
+    }
+    
+    #pdfIframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
     }
     
     .video-controls {
@@ -1182,15 +1147,24 @@ body {
     }
     
     .pdf-modal-content {
-        width: 99%;
-        height: 99%;
-        margin: 0.5% auto;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
     
     .close-pdf {
         top: 5px;
         right: 10px;
         font-size: 25px;
+        z-index: 1002;
+    }
+    
+    #pdfIframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
     }
     
     .fullscreen-btn {
